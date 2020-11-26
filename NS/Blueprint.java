@@ -2,16 +2,22 @@ package Not_Sys;
 
 import java.util.ArrayList;
 
-public interface Blueprint {
-    default void create() {
-    }
+public interface Blueprint{
+    public String header = null;
+    public String content = null;
+    public int id = 0;
 
-    default void update() {
-    }
+    public int generateId();
 
-    default void delete(String s1) {
-    }
+    public int getId();
 
-    default void read(String s1) {
-    }
+    public void setId();
+
+    public String getHeader();
+
+    public void setHeader(String header);
+
+    public String getContent();
+
+    public void setContent(String content);
 }

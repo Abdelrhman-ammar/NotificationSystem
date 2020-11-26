@@ -1,4 +1,5 @@
 package Not_Sys;
 
-public interface DBInventory {
+public interface DBInventory extends Inventory{
+
 }
