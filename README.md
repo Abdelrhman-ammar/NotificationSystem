@@ -1,2 +1,0 @@
-# NotificationSystem
-SoftwareEngineering_Assignment1
