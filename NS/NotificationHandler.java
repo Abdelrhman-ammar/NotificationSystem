@@ -45,13 +45,13 @@ public class NotificationHandler implements operation,Blueprint{
     }
 
     @Override
-    public void update(int id) {
-
+    public boolean update(int id, Blueprint obj) {
+        return true;
     }
 
     @Override
-    public void delete(int id) {
-
+    public boolean delete(int id) {
+        return true;
     }
 
     @Override

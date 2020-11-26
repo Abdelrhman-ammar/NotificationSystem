@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface operation {
     public void create(ArrayList<ArrayList<String>> arr);
-    public void update(int id);
-    public void delete(int id);
+    public boolean update(int id, Blueprint obj);
+    public boolean delete(int id);
     public Blueprint read(int id);
 }

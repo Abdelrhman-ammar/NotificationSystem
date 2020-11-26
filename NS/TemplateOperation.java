@@ -14,13 +14,31 @@ public class TemplateOperation implements operation {
     }
 
     @Override
-    public void update(int id) {
-
+    public boolean update(int id, Blueprint obj) {
+        try {
+            Inventory inventory = new MYSQLInventory();
+            inventory.delete(id);
+            if(!inventory.delete(id)){
+                throw new Exception();
+            }
+        }catch (Exception error){
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public void delete(int id) {
-
+    public boolean delete(int id) {
+        try {
+            Inventory inventory = new MYSQLInventory();
+            inventory.delete(id);
+            if(!inventory.delete(id)){
+                throw new Exception();
+            }
+        }catch (Exception error){
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -29,7 +47,7 @@ public class TemplateOperation implements operation {
             Inventory inventory = new MYSQLInventory();
             Blueprint temp = inventory.get(id);
             if(temp == null){
-                String error = "Error: This Temp Doesn't Exist";
+                String error = "Error: This Template Doesn't Exist";
                 throw new Exception(error);
             }
         }catch (Exception error){

@@ -7,17 +7,17 @@ public class MYSQLInventory implements DBInventory{
     }
 
     @Override
-    public Blueprint update(int id) {
-        return null;
+    public boolean update(int id) {
+        return true;
     }
 
     @Override
-    public Blueprint delete(int id) {
-        return null;
+    public boolean delete(int id) {
+        return true;
     }
 
     @Override
-    public void store(Blueprint obj) {
-
+    public boolean store(Blueprint obj) {
+        return true;
     }
 }
