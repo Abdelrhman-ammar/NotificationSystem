@@ -26,7 +26,6 @@ public class Template implements Blueprint{
         this.id = generateId();
     }
 
-
     public String getHeader() {
         return header;
     }
