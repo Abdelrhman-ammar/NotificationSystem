@@ -1,48 +1,23 @@
 package Not_Sys;
 
-public class Template implements Blueprint{
-    private String header;
-    private String content;
-    private int id;
-    private static int idCounetr = 0;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.security.PublicKey;
 
-    Template(){}
-    Template(String header, String content){
-        this.id = generateId();
-        this.header = header;
-        this.content = content;
+@Entity
+@Table(name = "template")
+public class Template extends Blueprint {
+
+
+    public Template() {
+        super();
     }
 
-
-    public int generateId(){
-        return idCounetr++;
+    public Template(String header, String content, String language) {
+        super(header, content, language);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId() {
-        this.id = generateId();
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String helpFormat(){
+    public String helpFormat() {
         return "Format Of Template Should Be:\nDear $ , " +
                 "your booking of the $ is confirmed. thanks for using our store.\n" +
                 "$ -> Refer To Parameter";
@@ -50,6 +25,6 @@ public class Template implements Blueprint{
 
     @Override
     public String toString() {
-        return "Template " + id  + "\n" + header + "\n" + content + "\n";
+        return "Template " + id + "\n" + header + "\n" + content + "\n" + language+'\n';
     }
 }

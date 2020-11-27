@@ -1,68 +1,41 @@
 package Not_Sys;
 
 import javax.management.Notification;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 
-public class NotificationHandler implements operation,Blueprint{
-    private int id;
-    private static int idCounter=0;
+@Entity
+@Table(name = "notification")
+public class NotificationHandler extends Blueprint implements operation {
 
-    @Override
-    public int generateId() {
-        return idCounter++;
+    public NotificationHandler() {
+        super();
     }
 
-    @Override
-    public int getId() {
-        return id;
+    public NotificationHandler(String header, String content, String language) {
+        super(header, content, language);
     }
 
-    @Override
-    public void setId() {
-    this.id = generateId();
-    }
-
-    @Override
-    public String getHeader() {
-        return null;
-    }
-
-    @Override
-    public void setHeader(String header) {
-        header=header;
-    }
-
-    @Override
-    public String getContent() {
-        return null;
-    }
-
-    @Override
-    public void setContent(String content) {
-
-    }
 
     @Override
     public boolean create(ArrayList<ArrayList<String>> arr) {
         try {
             Blueprint Notify = new NotificationHandler();
             Inventory inventory = new MYSQLInventory();
-            Notify.setId();
-            Blueprint temp = inventory.get(Integer.parseInt(arr.get(0).get(0)));
+            Blueprint temp = inventory.get(Integer.parseInt(arr.get(0).get(0)), "template");
             String Header = temp.getHeader();
             String Content = temp.getContent();
             for (int i = 0; i < arr.get(1).size(); i++) {
-                Content = Content.replaceFirst("$", arr.get(1).get(i));
+                Content = Content.replaceFirst("\\$", arr.get(1).get(i));
             }
             Notify.setContent(Content);
             Notify.setHeader(Header);
-            if(!inventory.store(Notify))
-            {
+            Notify.setLanguage(temp.getLanguage());
+            if (!inventory.store(Notify)) {
                 throw new Exception("Error: Can't Store Notification DB Error");
             }
-        }
-        catch(Exception Error)
-        {
+        } catch (Exception Error) {
             System.out.println(Error.getMessage());
             return false;
         }
@@ -72,24 +45,12 @@ public class NotificationHandler implements operation,Blueprint{
     @Override
     public boolean update(int id, Blueprint obj) {
 
-        try{
+        try {
             Inventory inventory = new MYSQLInventory();
-            Blueprint OldMsg = inventory.get(id);
-            if(OldMsg == null){
-                throw new Exception("Error:This Message you want Edit Doesn't Exist");
-            }
-            if(!inventory.delete(id)){
+            if (!inventory.update(id,obj)) {
                 throw new Exception("Error: Can't update Message DB Error.");
             }
-            OldMsg.setContent(obj.getContent());
-            OldMsg.setHeader(obj.getHeader());
-            inventory.store(OldMsg);
-            if(!inventory.store(OldMsg)){
-                throw new Exception("Error: Can't update Message DB Error.");
-            }
-        }
-        catch(Exception Error)
-        {
+        } catch (Exception Error) {
             System.out.println(Error.getMessage());
             return false;
         }
@@ -101,13 +62,10 @@ public class NotificationHandler implements operation,Blueprint{
     public boolean delete(int id) {
         try {
             Inventory inventory = new MYSQLInventory();
-            inventory.delete(id);
-            if (!inventory.delete(id)) {
+            if (!inventory.delete(id, "notification")) {
                 throw new Exception("Error: Can't Delete Message DB Error.");
             }
-        }
-        catch(Exception Error)
-        {
+        } catch (Exception Error) {
             System.out.println(Error.getMessage());
             return false;
         }
@@ -116,24 +74,26 @@ public class NotificationHandler implements operation,Blueprint{
 
     @Override
     public Blueprint read(int id) {
+        Blueprint Msg = null;
+
         try {
             Inventory inventory = new MYSQLInventory();
-            Blueprint Msg = inventory.get(id);
-            if(Msg != null)
-            {
+            Msg=inventory.get(id, "notification");
+            if (Msg != null) {
                 return Msg;
-            }
-            else
-            {
+            } else {
                 throw new Exception("Error: Can't Read Message DB Error.");
             }
 
-        }
-        catch(Exception Error)
-        {
+        } catch (Exception Error) {
             System.out.println(Error.getMessage());
         }
-        return new NotificationHandler();
+        return Msg;
 
+    }
+
+    @Override
+    public String toString() {
+        return "Notification " + id + "\n" + header + "\n" + content + "\n" + language + '\n';
     }
 }

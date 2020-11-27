@@ -1,23 +1,61 @@
 package Not_Sys;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
-public interface Blueprint{
-    public String header = null;
-    public String content = null;
-    public int id = 0;
+@MappedSuperclass
+public abstract class Blueprint {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    protected int id;
+    @Column(name = "header")
+    protected String header;
+    @Column(name = "content")
+    protected String content;
+    @Column(name = "language")
+    protected String language;
 
-    public int generateId();
+    Blueprint() {
+    }
 
-    public int getId();
+    Blueprint(String header, String content, String language) {
+        this.header = header;
+        this.content = content;
+        this.language = language;
+    }
 
-    public void setId();
 
-    public String getHeader();
+    public int getId() {
+        return id;
+    }
 
-    public void setHeader(String header);
+    public String getHeader() {
+        return header;
+    }
 
-    public String getContent();
 
-    public void setContent(String content);
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+
+    public String getContent() {
+        return content;
+    }
+
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+
+    public String getLanguage() {
+        return language;
+    }
+
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 }
