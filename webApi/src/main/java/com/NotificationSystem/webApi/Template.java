@@ -2,7 +2,9 @@ package com.NotificationSystem.webApi;
 
 import javax.persistence.*;
 
-@MappedSuperclass
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Template {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

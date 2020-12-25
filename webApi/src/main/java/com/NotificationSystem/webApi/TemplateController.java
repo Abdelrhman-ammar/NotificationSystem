@@ -9,10 +9,14 @@ public class TemplateController implements BController {
     private TemplateRepository templateRepository;
 
     @Override
-    @GetMapping("/Template/{id}")
-    public Template get(@PathVariable int id) {
+    @GetMapping("/Template")
+    public Template get(@RequestParam int id) {
+
         return templateRepository.findById(id).orElse(null);
     }
+
+    @GetMapping("/")
+    public String getAll(){return "done";}
 
 
     @PostMapping("/Template")

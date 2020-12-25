@@ -1,6 +1,8 @@
 package com.NotificationSystem.webApi;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.util.ArrayList;
 
 @Entity
