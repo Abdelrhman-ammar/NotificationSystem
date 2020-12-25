@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-public class NotificationController {
+public class NotificationController implements BController {
 
     @Autowired
     private NotificationRepository notificationRepository;
@@ -17,12 +17,14 @@ public class NotificationController {
     }
 
     @GetMapping("/Notification/{id}")
-    public Notification read(@PathVariable int id ) {
+    public Notification get(@PathVariable int id ) {
         return notificationRepository.findById(id);
     }
 
+
+
     @PutMapping("/Notification/{id}")
-    public boolean update(@RequestBody Notification n,@PathVariable int id) {
+    public boolean update(@PathVariable int id, @RequestBody Template n) {
         Notification existingNotification = notificationRepository.findById(id);
         existingNotification.setHeader(n.getHeader());
         existingNotification.setContent(n.getContent());
