@@ -13,11 +13,10 @@ public class Template {
     protected String content;
     protected Language lang;
 
-    public Template(String header, String content, Language lang, int id) {
+    public Template(String header, String content, Language lang) {
         this.header = header;
         this.content = content;
         this.lang = lang;
-        this.id = id;
     }
 
     public Template() {

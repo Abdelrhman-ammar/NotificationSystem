@@ -2,8 +2,6 @@ package com.NotificationSystem.webApi;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-
 @RestController
 public class TemplateController implements BController {
     private TemplateRepository templateRepository;
@@ -12,15 +10,17 @@ public class TemplateController implements BController {
     @GetMapping("/Template")
     public Template get(@RequestParam int id) {
 
-        return templateRepository.findById(id).orElse(null);
+        return (Template) templateRepository.findAll();
     }
 
     @GetMapping("/")
     public String getAll(){return "done";}
 
 
-    @PostMapping("/Template")
-    public int create(Template obj) {
+    @GetMapping("/t")
+    public int create() {
+        Template obj = new Template("hello" , "email" , Language.En);
+        templateRepository.save(obj);
         return 0;
     }
 
