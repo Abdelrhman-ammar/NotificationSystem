@@ -8,11 +8,11 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>RestAPI</artifactId>
+	<groupId>com.NotificationSystem</groupId>
+	<artifactId>webApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>RestAPI</name>
-	<description>RestAPI project for Spring Boot</description>
+	<name>webApi</name>
+	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>11</java.version>

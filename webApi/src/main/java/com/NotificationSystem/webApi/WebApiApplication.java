@@ -1,13 +1,13 @@
-package com.NotificationAPI.Notification_System;
+package com.NotificationSystem.webApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NotificationSystemApplication {
+public class WebApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NotificationSystemApplication.class, args);
+		SpringApplication.run(WebApiApplication.class, args);
 	}
 
 }
