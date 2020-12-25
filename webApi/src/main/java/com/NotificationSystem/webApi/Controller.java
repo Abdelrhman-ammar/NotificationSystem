@@ -5,4 +5,5 @@ public interface Controller {
     int create(SendInfo obj);
     boolean update(int id, SendInfo newObj);
     boolean delete(int id);
+    boolean send(int id);
 }
