@@ -12,7 +12,7 @@ public class Notification extends Template {
     public Notification(Template t, ArrayList<String> args)
     {
         this.header=t.header;
-        this.language=t.language;
+        this.lang=t.lang;
         for (int i = 0; i < args.size(); i++) {
             this.content = content.replaceFirst("\\$", args.get(i));
         }
@@ -20,6 +20,6 @@ public class Notification extends Template {
 
     @Override
     public String toString() {
-        return "Notification " + id + "\n" + header + "\n" + content + "\n" + language + '\n';
+        return "Notification " + id + "\n" + header + "\n" + content + "\n" + lang + '\n';
     }
 }

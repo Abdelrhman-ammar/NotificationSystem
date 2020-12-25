@@ -6,10 +6,10 @@ import javax.persistence.*;
 public class Template {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String header;
-    private String content;
-    private Language lang;
+    protected int id;
+    protected String header;
+    protected String content;
+    protected Language lang;
 
     public Template(String header, String content, Language lang, int id) {
         this.header = header;
