@@ -1,4 +1,10 @@
 package com.NotificationSystem.webApi;
 
-public interface NotificationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface NotificationRepository extends JpaRepository<Notification,Integer> {
+
+    Notification findById(int id);
+    Notification deleteById(int id);
+
 }

@@ -1,32 +1,33 @@
 package com.NotificationSystem.webApi;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@MappedSuperclass
 public class Template {
-    private String header;
-    private String conent;
-    private Language lang;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String header;
+    private String content;
+    private Language lang;
 
-    public Template(String header, String conent, Language lang, int id) {
+    public Template(String header, String content, Language lang, int id) {
         this.header = header;
-        this.conent = conent;
+        this.content = content;
         this.lang = lang;
         this.id = id;
+    }
+
+    public Template() {
+
     }
 
     public String getHeader() {
         return header;
     }
 
-    public String getConent() {
-        return conent;
+    public String getContent() {
+        return content;
     }
 
     public Language getLang() {
@@ -41,8 +42,8 @@ public class Template {
         this.header = header;
     }
 
-    public void setConent(String conent) {
-        this.conent = conent;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public void setLang(Language lang) {
