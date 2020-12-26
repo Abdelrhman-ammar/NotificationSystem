@@ -21,7 +21,7 @@ public class NotificationController implements BController {
 
 
     @PostMapping("/Notification")
-    public Notification create(@RequestParam int id, @RequestParam ArrayList<String> args) throws IOException
+    public Notification create(@RequestParam int id, @RequestBody ArrayList<String> args) throws IOException
     {
         Template t = getTemplate(id);
         Notification newNotification = new Notification(t, args);
@@ -31,13 +31,22 @@ public class NotificationController implements BController {
 
     @GetMapping("/Notification")
     public Notification get(@RequestParam int id) {
-        return notificationRepository.findById(id);
+        return null;
     }
 
-    @GetMapping("/Notification/getall")
+    @GetMapping("/Notification/all")
     public List<Notification> getAll()
     {
         return notificationRepository.findAll();
+    }
+    @GetMapping("/")
+    public List<String> gets()
+    {
+        ArrayList<String> s = new ArrayList<>();
+        s.add("ok");
+        s.add("yes");
+        s.add("ass");
+        return s;
     }
 
     @PutMapping("/Notification")
@@ -69,6 +78,7 @@ public class NotificationController implements BController {
         con.connect();
 
         int status = con.getResponseCode();
+        System.out.println(status);
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer content = new StringBuffer();
@@ -86,7 +96,7 @@ public class NotificationController implements BController {
         int num=content.lastIndexOf("\"header\":\"");
         content=content.substring(num+10,content.length());
         num=content.indexOf("\",");
-        String header = content.substring(0,num-1);
+        String header = content.substring(0,num);
 
         int num2=content.indexOf("\"header\":\"");
         content=content.substring(num+num2+14,content.length());
@@ -97,7 +107,7 @@ public class NotificationController implements BController {
         content=content.substring(num3+7,content.length());
         String lang=content.substring(0,content.length()-1);
 
-        Template t = new Template(header,fullContent,Language.valueOf(lang));
+        Template t = new Template(header,fullContent,Language.En);
         return t;
     }
 }
