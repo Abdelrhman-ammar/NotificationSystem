@@ -3,8 +3,6 @@ package com.NotificationSystem.webApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class TemplateController implements BController {
     @Autowired
@@ -12,7 +10,7 @@ public class TemplateController implements BController {
 
     @Override
     @GetMapping("/Template")
-    public Template get(@RequestParam int id) {
+    public String get(@RequestParam int id) {
 
         return templateRepository.findById(id).orElse(null);
     }
@@ -20,26 +18,26 @@ public class TemplateController implements BController {
 
     @Override
     @PutMapping("/Template")
-    public boolean update(@RequestBody Template newObj) {
+    public String update(@RequestBody Template newObj) {
         Template tempObj = templateRepository.findById(newObj.id).orElse(null);
         tempObj.setHeader(newObj.getHeader());
         tempObj.setContent(newObj.getContent());
         tempObj.setLang(newObj.getLang());
         templateRepository.save((Template) tempObj);
-        return false;
+        return "Template updated Successfully";
     }
 
     @Override
     @DeleteMapping("/Template")
-    public boolean delete(@RequestParam int id) {
+    public String delete(@RequestParam int id) {
         templateRepository.deleteById(id);
-        return false;
+        return "Template With id = " + id + "deleted Successfully";
     }
 
     @PostMapping("/Template")
-    public int create(@RequestBody Template obj) {
+    public String create(@RequestBody Template obj) {
         templateRepository.save((Template) obj);
-        return 0;
+        return "Template created Successfully";
     }
 
 }
