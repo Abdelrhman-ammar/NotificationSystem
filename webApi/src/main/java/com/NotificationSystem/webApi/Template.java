@@ -11,6 +11,7 @@ public class Template {
     protected int id;
     protected String header;
     protected String content;
+    @Enumerated(EnumType.STRING)
     protected Language lang;
 
     public Template(String header, String content, Language lang) {
