@@ -21,12 +21,13 @@ public class NotificationController implements BController {
 
 
     @PostMapping("/Notification")
-    public Notification create(@RequestParam int id, @RequestParam ArrayList<String> args) throws IOException
+    public Notification create(@RequestParam int id, @RequestBody ArrayList<String> args) throws IOException
     {
         Template t = getTemplate(id);
         Notification newNotification = new Notification(t, args);
         notificationRepository.save(newNotification);
         return newNotification;
+        //return null;
     }
 
     @GetMapping("/Notification")
@@ -78,6 +79,8 @@ public class NotificationController implements BController {
 
         in.close();
         con.disconnect();
+        System.out.println(content);
+        //return null;
         return fixFormat(String.valueOf(content));
     }
 
@@ -97,7 +100,9 @@ public class NotificationController implements BController {
         content=content.substring(num3+7,content.length());
         String lang=content.substring(0,content.length()-1);
 
-        Template t = new Template(header,fullContent,Language.valueOf(lang));
+        Template t = new Template(header,fullContent,Language.En);
         return t;
     }
+
+
 }

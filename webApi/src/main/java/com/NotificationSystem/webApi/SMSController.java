@@ -51,4 +51,14 @@ public class SMSController implements Controller{
     public List<SMS> getAll() {
         return repositoryObj.findAll();
     }
+
+
+    @GetMapping("/getSmsPhoCon")
+    public int _getByPhoneNumAndNotificationId(@RequestParam String phoneNum,@RequestParam int notificationId){
+        //return repositoryObj.getByPhoneNumAndNotificationId(phoneNum, notificationId);
+        return repositoryObj.findByNotificationIdAndPhoneNumber(notificationId, phoneNum);
+    }
+
+
+
 }
