@@ -27,27 +27,17 @@ public class NotificationController implements BController {
         Notification newNotification = new Notification(t, args);
         notificationRepository.save(newNotification);
         return newNotification;
-        //return null;
     }
 
     @GetMapping("/Notification")
     public Notification get(@RequestParam int id) {
-        return null;
+        return notificationRepository.findById(id);
     }
 
     @GetMapping("/Notification/all")
     public List<Notification> getAll()
     {
         return notificationRepository.findAll();
-    }
-    @GetMapping("/")
-    public List<String> gets()
-    {
-        ArrayList<String> s = new ArrayList<>();
-        s.add("ok");
-        s.add("yes");
-        s.add("ass");
-        return s;
     }
 
     @PutMapping("/Notification")
@@ -89,8 +79,6 @@ public class NotificationController implements BController {
 
         in.close();
         con.disconnect();
-        System.out.println(content);
-        //return null;
         return fixFormat(String.valueOf(content));
     }
 
@@ -113,6 +101,4 @@ public class NotificationController implements BController {
         Template t = new Template(header,fullContent,Language.En);
         return t;
     }
-
-
 }
