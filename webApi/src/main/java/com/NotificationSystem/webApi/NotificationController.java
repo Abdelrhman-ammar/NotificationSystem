@@ -21,12 +21,12 @@ public class NotificationController implements BController {
 
 
     @PostMapping("/Notification")
-    public Notification create(@RequestParam int id, @RequestBody ArrayList<String> args) throws IOException
+    public String create(@RequestParam int id, @RequestBody ArrayList<String> args) throws IOException
     {
         Template t = getTemplate(id);
         Notification newNotification = new Notification(t, args);
         notificationRepository.save(newNotification);
-        return newNotification;
+        return "Notification created successfully";
     }
 
     @GetMapping("/Notification")
@@ -41,19 +41,19 @@ public class NotificationController implements BController {
     }
 
     @PutMapping("/Notification")
-    public boolean update(@RequestBody Template n) {
+    public String update(@RequestBody Template n) {
         Notification existingNotification = notificationRepository.findById(n.getId());
         existingNotification.setHeader(n.getHeader());
         existingNotification.setContent(n.getContent());
         existingNotification.setLang(n.getLang());
         notificationRepository.save(existingNotification);
-        return true;
+        return "Notification updated successfully";
     }
 
     @DeleteMapping("/Notification")
-    public boolean delete(@RequestParam int id) {
+    public String delete(@RequestParam int id) {
         notificationRepository.deleteById(id);
-        return true;
+        return "Notification was deleted";
     }
 
     private Template getTemplate(int id) throws IOException
