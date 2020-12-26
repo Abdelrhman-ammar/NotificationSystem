@@ -21,7 +21,11 @@ public class TemplateController implements BController {
     @Override
     @PutMapping("/Template")
     public boolean update(@RequestBody Template newObj) {
-        templateRepository.save((Template) newObj);
+        Template tempObj = templateRepository.findById(newObj.id).orElse(null);
+        tempObj.setHeader(newObj.getHeader());
+        tempObj.setContent(newObj.getContent());
+        tempObj.setLang(newObj.getLang());
+        templateRepository.save((Template) tempObj);
         return false;
     }
 
