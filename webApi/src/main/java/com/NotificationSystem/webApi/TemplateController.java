@@ -10,7 +10,7 @@ public class TemplateController implements BController {
 
     @Override
     @GetMapping("/Template")
-    public String get(@RequestParam int id) {
+    public Template get(@RequestParam int id) {
 
         return templateRepository.findById(id).orElse(null);
     }
