@@ -36,7 +36,7 @@ public class SMSController implements Controller{
     @DeleteMapping("/sms")
     public String delete(@RequestParam int id) {
         repositoryObj.deleteById(id);
-        return "SMS With id = " + id + "deleted Successfully";
+        return "SMS With id = " + id + " deleted Successfully";
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SMSController implements Controller{
         SMS obj = repositoryObj.getOne(id);
         obj.setSendSuccessfully(true);
         update(obj);
-        return "SMS With id = " + id + "send Successfully";
+        return "SMS With id = " + id + " send Successfully";
     }
 
     @GetMapping("/sms/all")

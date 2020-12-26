@@ -31,7 +31,7 @@ public class TemplateController implements BController {
     @DeleteMapping("/Template")
     public String delete(@RequestParam int id) {
         templateRepository.deleteById(id);
-        return "Template With id = " + id + "deleted Successfully";
+        return "Template With id = " + id + " deleted Successfully";
     }
 
     @PostMapping("/Template")

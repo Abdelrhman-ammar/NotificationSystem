@@ -42,7 +42,7 @@ public class EmailController implements Controller{
         Email obj = repositoryObj.getOne(id);
         obj.setSendSuccessfully(true);
         update(obj);
-        return "Email With id = " + id + "send Successfully";
+        return "Email With id = " + id + " send Successfully";
     }
 
     @GetMapping("/Email/all")
