@@ -31,22 +31,13 @@ public class NotificationController implements BController {
 
     @GetMapping("/Notification")
     public Notification get(@RequestParam int id) {
-        return null;
+        return notificationRepository.findById(id);
     }
 
     @GetMapping("/Notification/all")
     public List<Notification> getAll()
     {
         return notificationRepository.findAll();
-    }
-    @GetMapping("/")
-    public List<String> gets()
-    {
-        ArrayList<String> s = new ArrayList<>();
-        s.add("ok");
-        s.add("yes");
-        s.add("ass");
-        return s;
     }
 
     @PutMapping("/Notification")
