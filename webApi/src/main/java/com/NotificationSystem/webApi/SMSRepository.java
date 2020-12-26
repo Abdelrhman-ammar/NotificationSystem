@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface SMSRepository extends JpaRepository<SMS, Integer> {
-    //SMS getByPhoneNumAndNotificationId(String phoneNum, int notificationId);
-
-    @Query("select id from sms s WHERE s.notification_id = :notificationId AND s.phone_num = :phone_num")
-    int findByNotificationIdAndPhoneNumber(@Param("notification_id") int notification_id, @Param("phone_num") String phone_num);
+    //Optional<SMS> findByPhoneNumAndNotificationId(String phoneNum, Integer notificationId);
+/*
+    @Query("select id from sms s WHERE s.notification_id = ?1 AND s.phone_num = ?2")
+    int fun(@Param("notification_id") Integer notification_id,@Param("phone_num") String phone_num);*/
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class SMSController implements Controller{
@@ -19,32 +20,32 @@ public class SMSController implements Controller{
 
     @Override
     @PostMapping("/sms")
-    public int create(@RequestBody SendInfo obj) {
+    public String create(@RequestBody SendInfo obj) {
         repositoryObj.save((SMS)obj);
-        return 0;
+        return "SMS created Successfully";
     }
 
     @Override
     @PutMapping("/sms")
-    public boolean update(@RequestBody SendInfo newObj) {
+    public String update(@RequestBody SendInfo newObj) {
         repositoryObj.save((SMS)newObj);
-        return false;
+        return "SMS updated Successfully";
     }
 
     @Override
     @DeleteMapping("/sms")
-    public boolean delete(@RequestParam int id) {
+    public String delete(@RequestParam int id) {
         repositoryObj.deleteById(id);
-        return false;
+        return "SMS With id = " + id + "deleted Successfully";
     }
 
     @Override
     @GetMapping("/sendSms")
-    public boolean send(@RequestParam int id) {
+    public String send(@RequestParam int id) {
         SMS obj = repositoryObj.getOne(id);
         obj.setSendSuccessfully(true);
         update(obj);
-        return false;
+        return "SMS With id = " + id + "send Successfully";
     }
 
     @GetMapping("/getAllSms")
@@ -52,12 +53,13 @@ public class SMSController implements Controller{
         return repositoryObj.findAll();
     }
 
-
+/*
     @GetMapping("/getSmsPhoCon")
-    public int _getByPhoneNumAndNotificationId(@RequestParam String phoneNum,@RequestParam int notificationId){
-        //return repositoryObj.getByPhoneNumAndNotificationId(phoneNum, notificationId);
-        return repositoryObj.findByNotificationIdAndPhoneNumber(notificationId, phoneNum);
-    }
+    public Integer _getByNotificationIdAndPhoneNum(@RequestParam int notificationId, @RequestParam String phoneNum){
+        //return repositoryObj.findByPhoneNumAndNotificationId(phoneNum, notificationId);
+        //return repositoryObj.findById(1);
+        return repositoryObj.fun(notificationId, phoneNum);
+    }*/
 
 
 
