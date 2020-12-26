@@ -17,32 +17,32 @@ public class EmailController implements Controller{
 
     @Override
     @PostMapping("/Email")
-    public int create(@RequestBody SendInfo obj) {
+    public String create(@RequestBody SendInfo obj) {
         repositoryObj.save((Email)obj);
-        return 1;
+        return "Email created Successfully";
     }
 
     @Override
     @PutMapping("/Email")
-    public boolean update(@RequestBody SendInfo newObj) {
+    public String update(@RequestBody SendInfo newObj) {
         repositoryObj.save((Email)newObj);
-        return false;
+        return "Email updated Successfully";
     }
 
     @Override
     @DeleteMapping("/Email")
-    public boolean delete(@RequestParam int id) {
+    public String delete(@RequestParam int id) {
         repositoryObj.deleteById(id);
-        return false;
+        return "Email deleted Successfully";
     }
 
     @Override
     @GetMapping("/sendEmail")
-    public boolean send(@RequestParam int id) {
+    public String send(@RequestParam int id) {
         Email obj = repositoryObj.getOne(id);
         obj.setSendSuccessfully(true);
         update(obj);
-        return false;
+        return "Email With id = " + id + "send Successfully";
     }
 
     @GetMapping("/getAllEmails")
