@@ -32,13 +32,22 @@ public class NotificationController implements BController {
 
     @GetMapping("/Notification")
     public Notification get(@RequestParam int id) {
-        return notificationRepository.findById(id);
+        return null;
     }
 
-    @GetMapping("/Notification/getall")
+    @GetMapping("/Notification/all")
     public List<Notification> getAll()
     {
         return notificationRepository.findAll();
+    }
+    @GetMapping("/")
+    public List<String> gets()
+    {
+        ArrayList<String> s = new ArrayList<>();
+        s.add("ok");
+        s.add("yes");
+        s.add("ass");
+        return s;
     }
 
     @PutMapping("/Notification")
@@ -70,6 +79,7 @@ public class NotificationController implements BController {
         con.connect();
 
         int status = con.getResponseCode();
+        System.out.println(status);
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer content = new StringBuffer();
@@ -89,7 +99,7 @@ public class NotificationController implements BController {
         int num=content.lastIndexOf("\"header\":\"");
         content=content.substring(num+10,content.length());
         num=content.indexOf("\",");
-        String header = content.substring(0,num-1);
+        String header = content.substring(0,num);
 
         int num2=content.indexOf("\"header\":\"");
         content=content.substring(num+num2+14,content.length());

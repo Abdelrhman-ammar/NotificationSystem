@@ -15,7 +15,7 @@ public class Notification extends Template {
     {
         this.header=t.header;
         this.lang=t.lang;
-        this.content = t.content;
+        this.content=t.content;
         for (int i = 0; i < args.size(); i++) {
             this.content = content.replaceFirst("\\$", args.get(i));
         }
