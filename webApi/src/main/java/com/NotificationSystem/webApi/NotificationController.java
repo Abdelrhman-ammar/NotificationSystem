@@ -24,11 +24,11 @@ public class NotificationController implements BController {
 
 
     @PutMapping("/Notification/{id}")
-    public boolean update(@PathVariable int id, @RequestBody Template n) {
-        Notification existingNotification = notificationRepository.findById(id);
+    public boolean update( @RequestBody Template n) {
+        /*Notification existingNotification = notificationRepository.findById(id);
         existingNotification.setHeader(n.getHeader());
         existingNotification.setContent(n.getContent());
-        existingNotification.setLang(n.getLang());
+        existingNotification.setLang(n.getLang());*/
         return true;
     }
 

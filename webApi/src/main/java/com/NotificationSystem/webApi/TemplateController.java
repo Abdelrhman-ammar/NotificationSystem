@@ -19,13 +19,23 @@ public class TemplateController implements BController {
 
 
     @Override
-    public boolean update(int id, Template newObj) {
+    @PutMapping("/Template")
+    public boolean update(@RequestBody Template newObj) {
+        templateRepository.save((Template) newObj);
         return false;
     }
 
     @Override
+    @DeleteMapping("/Template")
     public boolean delete(int id) {
+        templateRepository.deleteById(id);
         return false;
+    }
+
+    @PostMapping("/Template")
+    public int create(@RequestBody Template obj) {
+        templateRepository.save((Template) obj);
+        return 0;
     }
 
 }
