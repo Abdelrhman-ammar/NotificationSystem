@@ -40,7 +40,7 @@ public class SMSController implements Controller{
     }
 
     @Override
-    @GetMapping("/sendSms")
+    @GetMapping("/sms/send")
     public String send(@RequestParam int id) {
         SMS obj = repositoryObj.getOne(id);
         obj.setSendSuccessfully(true);
@@ -48,7 +48,7 @@ public class SMSController implements Controller{
         return "SMS With id = " + id + "send Successfully";
     }
 
-    @GetMapping("/getAllSms")
+    @GetMapping("/sms/all")
     public List<SMS> getAll() {
         return repositoryObj.findAll();
     }

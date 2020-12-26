@@ -37,7 +37,7 @@ public class EmailController implements Controller{
     }
 
     @Override
-    @GetMapping("/sendEmail")
+    @GetMapping("/Email/send")
     public String send(@RequestParam int id) {
         Email obj = repositoryObj.getOne(id);
         obj.setSendSuccessfully(true);
@@ -45,7 +45,7 @@ public class EmailController implements Controller{
         return "Email With id = " + id + "send Successfully";
     }
 
-    @GetMapping("/getAllEmails")
+    @GetMapping("/Email/all")
     public List<Email> getAll() {
         return repositoryObj.findAll();
     }

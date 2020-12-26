@@ -19,7 +19,6 @@ public class NotificationController implements BController {
     @Autowired
     private NotificationRepository notificationRepository;
 
-
     @PostMapping("/Notification")
     public String create(@RequestParam int id, @RequestBody ArrayList<String> args) throws IOException
     {
@@ -96,9 +95,9 @@ public class NotificationController implements BController {
 
         int num3=content.indexOf("\"lang\":");
         content=content.substring(num3+7,content.length());
-        String lang=content.substring(0,content.length()-1);
+        String lang=content.substring(1,content.length()-2);
 
-        Template t = new Template(header,fullContent,Language.En);
+        Template t = new Template(header,fullContent,Language.valueOf(lang));
         return t;
     }
 }
