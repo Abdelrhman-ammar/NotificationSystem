@@ -27,7 +27,6 @@ public class NotificationController implements BController {
         Notification newNotification = new Notification(t, args);
         notificationRepository.save(newNotification);
         return newNotification;
-        //return null;
     }
 
     @GetMapping("/Notification")
@@ -89,8 +88,6 @@ public class NotificationController implements BController {
 
         in.close();
         con.disconnect();
-        System.out.println(content);
-        //return null;
         return fixFormat(String.valueOf(content));
     }
 
@@ -113,6 +110,4 @@ public class NotificationController implements BController {
         Template t = new Template(header,fullContent,Language.En);
         return t;
     }
-
-
 }
