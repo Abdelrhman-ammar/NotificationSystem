@@ -31,7 +31,7 @@ public class TemplateController implements BController {
 
     @Override
     @DeleteMapping("/Template")
-    public boolean delete(int id) {
+    public boolean delete(@RequestParam int id) {
         templateRepository.deleteById(id);
         return false;
     }
