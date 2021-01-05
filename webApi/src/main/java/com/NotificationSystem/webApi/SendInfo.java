@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@JsonDeserialize(as=SMS.class)
+@JsonDeserialize(using = InstanceDeserializer.class)
 public abstract class SendInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

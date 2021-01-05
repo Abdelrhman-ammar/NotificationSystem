@@ -33,7 +33,6 @@ public class InstanceDeserializer extends JsonDeserializer<SendInfo> {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         ObjectNode root = (ObjectNode) mapper.readTree(jp);
         Class<? extends SendInfo> instanceClass = null;
-        System.out.println(root.toString());
         if(hasEmail(root.toString())){
             instanceClass = Email.class;
         }

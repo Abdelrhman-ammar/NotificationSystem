@@ -1,8 +1,11 @@
 package com.NotificationSystem.webApi;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import javax.persistence.*;
 
 @Entity
+@JsonDeserialize(as = SMS.class)
 public class SMS extends SendInfo{
 
     private String phoneNum;
