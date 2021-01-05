@@ -1,6 +1,8 @@
 package com.NotificationSystem.webApi;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 public class EmailController implements Controller{
     @Autowired
     private EmailRepository repositoryObj;
+
+
 
     @Override
     @GetMapping("/Email")
@@ -35,6 +39,7 @@ public class EmailController implements Controller{
         repositoryObj.deleteById(id);
         return "Email deleted Successfully";
     }
+
 
     @Override
     @GetMapping("/Email/send")
