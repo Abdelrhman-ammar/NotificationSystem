@@ -2,8 +2,10 @@ package com.NotificationSystem.webApi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,12 +52,10 @@ public class SMSController implements Controller{
     @Override
     @GetMapping("/sms/send")
     public String send(@RequestParam int id) {
-        //service.sendSms(smsRequest);
         SMS obj = repositoryObj.getOne(id);
         System.out.println(obj.getPhoneNum());
         smsSender.sendSms(obj);
-        //obj.setSendSuccessfully(true);
-        //update(obj);
+        repositoryObj.deleteById(id);
         return "SMS With id = " + id + " send Successfully";
     }
 
@@ -64,14 +64,17 @@ public class SMSController implements Controller{
         return repositoryObj.findAll();
     }
 
-/*
-    @GetMapping("/getSmsPhoCon")
-    public Integer _getByNotificationIdAndPhoneNum(@RequestParam int notificationId, @RequestParam String phoneNum){
-        //return repositoryObj.findByPhoneNumAndNotificationId(phoneNum, notificationId);
-        //return repositoryObj.findById(1);
-        return repositoryObj.fun(notificationId, phoneNum);
-    }*/
-
-
-
+    @GetMapping("/sms/send/all")
+    public String sendAll() throws InterruptedException {
+        wait(500);
+        ArrayList<SMS> smsToBeSent;
+        smsToBeSent = (ArrayList<SMS>) repositoryObj.findAll();
+        for(int i=0; i<smsToBeSent.size(); i++)
+        {
+            SMS obj = smsToBeSent.get(i);
+            smsSender.sendSms(obj);
+            repositoryObj.deleteById(obj.getId());
+        }
+        return "SMS were sent successfully";
+    }
 }

@@ -17,7 +17,6 @@ public class TemplateController implements BController {
         return templateRepository.findById(id).orElse(null);
     }
 
-
     @Override
     @PutMapping("/Template")
     public String update(@RequestBody Template newObj) {
@@ -39,7 +38,7 @@ public class TemplateController implements BController {
     @PostMapping("/Template")
     public String create(@RequestBody Template obj) {
         templateRepository.save((Template) obj);
-        return "Template created Successfully";
+        return String.valueOf(obj.getId());
     }
 
     @GetMapping("/Template/all")

@@ -25,7 +25,7 @@ public class NotificationController implements BController {
         Template t = getTemplate(id);
         Notification newNotification = new Notification(t, args);
         notificationRepository.save(newNotification);
-        return "Notification created successfully";
+        return String.valueOf(newNotification.getId());
     }
 
     @GetMapping("/Notification")

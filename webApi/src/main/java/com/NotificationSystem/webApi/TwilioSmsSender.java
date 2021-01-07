@@ -30,6 +30,8 @@ public class TwilioSmsSender implements SmsSender {
         String message = notification.getContent();
         MessageCreator creator = Message.creator(to, from, message);
         creator.create();
+        notification.setSent();
+        notificationRepo.save(notification);
         LOGGER.info("Send sms {}", smsRequest);
 
     }

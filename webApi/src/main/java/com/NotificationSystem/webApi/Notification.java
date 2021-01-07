@@ -8,6 +8,12 @@ import java.util.ArrayList;
 @Entity
 public class Notification extends Template {
 
+    protected boolean sent=false;
+
+    public void setSent() {
+        this.sent = true;
+    }
+
     public Notification() {
     }
 
